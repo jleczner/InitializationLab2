@@ -10,11 +10,23 @@ public class InitializationLab2 {
         ThingContainer tc3 = new ThingContainer(5);
         ColorfulThing blue1 = new ColorfulThing(ColorfulThing.Color.BLUE);
         ColorfulThing green1 = new ColorfulThing(ColorfulThing.Color.GREEN);
-        ColorfulThing blue2 = new ColorfulThing(ColorfulThing.Color.BLUE);
         ColorfulThing red1 = new ColorfulThing(ColorfulThing.Color.RED);
         ColorfulThing green2 = new ColorfulThing(ColorfulThing.Color.GREEN);
         ColorfulThing purp1 = new ColorfulThing(ColorfulThing.Color.PURPLE);
-        ColorfulThing yellow1 = new ColorfulThing(ColorfulThing.Color.YELLOW);
+
+
+        tc1.add(blue1);
+        tc1.printThings();
+        tc2.add(blue1);
+        tc2.add(green1);
+        tc2.printThings();
+        tc3.add(blue1);
+        tc3.add(blue1);
+        tc3.add(green1);
+        tc3.add(green2);
+        tc3.add(red1);
+        tc3.add(purp1);
+        tc3.printThings();
     }
 }
 
@@ -67,16 +79,19 @@ class ThingContainer {
 
     public ColorfulThing[] removeHelper(int removeIndex) {
         ColorfulThing[] newThings = new ColorfulThing[things.length - 1]; // one element less
-        for (int i = 0; i < things.length; i++) {
+        for (int i = 0; i < things.length; i++)
             if (i != removeIndex)
                 newThings[i] = things[i];
-        }
+
         return newThings;
     }
 
     public void printThings() {
-        for (int i = 0; i < things.length; i++)
-            System.out.println("[" + i + "] " + things[i].getColor());
+        if (things.length > 0)
+            for (int i = 0; i < things.length; i++)
+                System.out.println("[" + i + "] " + things[i].getColor());
+        else
+            System.out.println("No space in this container, bruh");
     }
 
 }
