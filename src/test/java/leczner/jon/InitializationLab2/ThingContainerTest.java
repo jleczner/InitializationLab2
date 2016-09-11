@@ -91,4 +91,46 @@ public class ThingContainerTest {
         tc1.printThings();
     }
 
+    @Test
+    public void removeEmptyTest2() {
+        System.out.println("removeEmptyTest");
+        tcEmpty.printThings();
+        ColorfulThing ct1 = new ColorfulThing(ColorfulThing.Color.BLUE);
+        ColorfulThing shouldBeNull = tcEmpty.remove(ct1);
+        assertEquals(null, shouldBeNull);
+    }
+
+    @Test
+    public void removeTest2() {
+        System.out.println("removeTest");
+        ColorfulThing ct1 = new ColorfulThing(ColorfulThing.Color.BLUE);
+        ColorfulThing ct2 = new ColorfulThing(ColorfulThing.Color.YELLOW);
+        tc1.add(ct1);
+        tc1.printThings();
+        ColorfulThing blueThing = tc1.remove(ct1);
+        tc1.printThings();
+        assertEquals(ct1, blueThing); // right?
+        ColorfulThing shouldBeNull = tc1.remove(ct1);
+        tc1.printThings();
+        assertEquals(null, shouldBeNull);
+        tc1.add(ct2);
+        tc1.printThings();
+        ColorfulThing shouldAlsoBeNull = tc1.remove(ct1);
+        assertEquals(null, shouldAlsoBeNull);
+    }
+
+    @Test
+    public void removeSameTest2() {
+        System.out.println("removeSameTest");
+        ColorfulThing ct1 = new ColorfulThing(ColorfulThing.Color.BLUE);
+        ColorfulThing ct2 = new ColorfulThing(ColorfulThing.Color.BLUE);
+        tc1.add(ct1);
+        tc1.add(ct2);
+        tc1.printThings();
+        ColorfulThing shouldBeCT1 = tc1.remove(ct1);
+        tc1.printThings();
+        assertEquals(ct1, shouldBeCT1);
+        assertNotEquals(ct2, shouldBeCT1);
+    }
+
 }

@@ -65,11 +65,31 @@ class ThingContainer {
         System.out.println("ThingContainer is full");
     }
 
+    public ColorfulThing pop() {
+        ColorfulThing last = null;
+        if (things.length > 0) {
+            last = things[things.length - 1];
+            remove(last);
+        }
+        return last;
+    }
+
     public ColorfulThing remove(ColorfulThing.Color color) {
         ColorfulThing returnValue = null;
         for (int i = 0; i < things.length; i++) {
             ColorfulThing.Color thingColor = things[i].getColor();
             if (thingColor == color) {
+                returnValue = things[i];
+                things = removeHelper(i);
+            }
+        }
+        return returnValue;
+    }
+
+    public ColorfulThing remove(ColorfulThing ct) {
+        ColorfulThing returnValue = null;
+        for (int i = 0; i < things.length; i++) {
+            if (things[i] == ct) {
                 returnValue = things[i];
                 things = removeHelper(i);
             }
