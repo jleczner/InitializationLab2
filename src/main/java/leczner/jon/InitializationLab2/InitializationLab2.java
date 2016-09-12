@@ -13,18 +13,25 @@ public class InitializationLab2 {
         ColorfulThing red1 = new ColorfulThing(ColorfulThing.Color.RED);
         ColorfulThing green2 = new ColorfulThing(ColorfulThing.Color.GREEN);
         ColorfulThing purp1 = new ColorfulThing(ColorfulThing.Color.PURPLE);
+        ColorfulThing yellow1 = new ColorfulThing(ColorfulThing.Color.YELLOW);
 
-
+        System.out.println("tc1");
         tc1.add(blue1);
         tc1.printThings();
+        System.out.println("tc2");
         tc2.add(blue1);
         tc2.add(green1);
         tc2.printThings();
         tc3.add(blue1);
         tc3.add(green1);
         tc3.add(blue1);
+        tc3.pop();
         tc3.add(green2);
+        tc3.remove(green1);
         tc3.add(red1);
+        tc3.add(yellow1);
+        tc3.add(yellow1);
+        tc3.remove(ColorfulThing.Color.YELLOW);
         tc3.add(purp1);
         tc3.printThings();
     }
@@ -46,19 +53,23 @@ class ColorfulThing {
 
 class ThingContainer {
     private ColorfulThing[] things;
+    private int lastElementIndex;
 
     public ThingContainer(int size) {
         things = new ColorfulThing[size];
+        lastElementIndex = 0;
     }
 
     public ColorfulThing[] getThings() {
         return things;
     }
+    public int getLastElementIndex() { return lastElementIndex; }
 
     public void add(ColorfulThing ct) {
         for (int i = 0; i < things.length; i++) {
             if (things[i] == null) {
                 things[i] = ct;
+                lastElementIndex++;
                 return;
             }
         }
@@ -67,10 +78,12 @@ class ThingContainer {
 
     public ColorfulThing pop() {
         ColorfulThing last = null;
+        int lastElementIndex = getLastElementIndex();
         if (things.length > 0) {
-            last = things[things.length - 1];
+            last = things[lastElementIndex];
             remove(last);
         }
+        System.out.println("You done popped em ALL!");
         return last;
     }
 
@@ -102,7 +115,7 @@ class ThingContainer {
         for (int i = 0; i < things.length; i++)
             if (i != removeIndex)
                 newThings[i] = things[i];
-
+        lastElementIndex--;
         return newThings;
     }
 
@@ -112,6 +125,7 @@ class ThingContainer {
                 System.out.println("[" + i + "] " + things[i].getColor());
         else
             System.out.println("No space in this container, bruh");
+        System.out.println(); // for prettiness
     }
 
 }
