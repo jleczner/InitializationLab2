@@ -21,8 +21,8 @@ public class InitializationLab2 {
         tc2.add(green1);
         tc2.printThings();
         tc3.add(blue1);
-        tc3.add(blue1);
         tc3.add(green1);
+        tc3.add(blue1);
         tc3.add(green2);
         tc3.add(red1);
         tc3.add(purp1);

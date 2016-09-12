@@ -36,11 +36,11 @@ public class ThingContainerTest {
         System.out.println("overflowTest");
         ColorfulThing[] things = tc5.getThings();
         ColorfulThing ct1 = new ColorfulThing(ColorfulThing.Color.YELLOW);
-        ColorfulThing ct2 = new ColorfulThing(ColorfulThing.Color.YELLOW);
-        ColorfulThing ct3 = new ColorfulThing(ColorfulThing.Color.YELLOW);
-        ColorfulThing ct4 = new ColorfulThing(ColorfulThing.Color.YELLOW);
-        ColorfulThing ct5 = new ColorfulThing(ColorfulThing.Color.YELLOW);
-        ColorfulThing ct6 = new ColorfulThing(ColorfulThing.Color.YELLOW);
+        ColorfulThing ct2 = new ColorfulThing(ColorfulThing.Color.BLUE);
+        ColorfulThing ct3 = new ColorfulThing(ColorfulThing.Color.GREEN);
+        ColorfulThing ct4 = new ColorfulThing(ColorfulThing.Color.BLUE);
+        ColorfulThing ct5 = new ColorfulThing(ColorfulThing.Color.RED);
+        ColorfulThing ct6 = new ColorfulThing(ColorfulThing.Color.PURPLE);
         tc5.add(ct1);
         tc5.add(ct2);
         tc5.add(ct3);
