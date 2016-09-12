@@ -14,6 +14,7 @@ public class InitializationLab2 {
         ColorfulThing green2 = new ColorfulThing(ColorfulThing.Color.GREEN);
         ColorfulThing purp1 = new ColorfulThing(ColorfulThing.Color.PURPLE);
         ColorfulThing yellow1 = new ColorfulThing(ColorfulThing.Color.YELLOW);
+        ThingContainer things = new ThingContainer(new ColorfulThing[]{blue1, green1, red1, purp1, yellow1});
 
         System.out.println("tc1");
         tc1.add(blue1);
@@ -34,6 +35,7 @@ public class InitializationLab2 {
         tc3.remove(ColorfulThing.Color.YELLOW);
         tc3.add(purp1);
         tc3.printThings();
+        things.printThings();
     }
 }
 
@@ -57,7 +59,11 @@ class ThingContainer {
 
     public ThingContainer(int size) {
         things = new ColorfulThing[size];
-        lastElementIndex = 0;
+        lastElementIndex = -1; // add will make 0
+    }
+
+    public ThingContainer(ColorfulThing[] things) {
+        this.things = things;
     }
 
     public ColorfulThing[] getThings() {
@@ -89,11 +95,12 @@ class ThingContainer {
 
     public ColorfulThing remove(ColorfulThing.Color color) {
         ColorfulThing returnValue = null;
-        for (int i = 0; i < things.length; i++) {
+        for (int i = 0; i <= lastElementIndex; i++) {
             ColorfulThing.Color thingColor = things[i].getColor();
             if (thingColor == color) {
                 returnValue = things[i];
                 things = removeHelper(i);
+                return returnValue;
             }
         }
         return returnValue;
@@ -111,17 +118,18 @@ class ThingContainer {
     }
 
     public ColorfulThing[] removeHelper(int removeIndex) {
-        ColorfulThing[] newThings = new ColorfulThing[things.length - 1]; // one element less
-        for (int i = 0; i < things.length; i++)
+        ColorfulThing[] newThings  = new ColorfulThing[things.length];
+        ThingContainer temp = new ThingContainer(newThings);
+        for (int i = 0; i <= this.lastElementIndex; i++)
             if (i != removeIndex)
-                newThings[i] = things[i];
-        lastElementIndex--;
+                temp.add(things[i]);
+        this.lastElementIndex--;
         return newThings;
     }
 
     public void printThings() {
         if (things.length > 0)
-            for (int i = 0; i < things.length; i++)
+            for (int i = 0; i < lastElementIndex; i++)
                 System.out.println("[" + i + "] " + things[i].getColor());
         else
             System.out.println("No space in this container, bruh");
